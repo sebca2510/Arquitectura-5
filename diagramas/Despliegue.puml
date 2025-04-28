@@ -1,0 +1,26 @@
+@startuml SGA_Deployment_Diagram
+
+artifact "Web Browser" as Browser
+artifact "Mobile Device" as Mobile
+node "Load Balancer" as LB
+node "Web Server" as Web
+node "Application Server" as App
+node "Database Server" as DB
+node "File Storage" as Storage
+
+Browser --> LB : HTTPS
+Mobile --> LB
+LB --> Web : HTTP
+Web --> App : API
+App --> DB : JDBC
+App --> Storage : NFS
+
+cloud AWS {
+  LB
+  Web
+  App
+  DB
+  Storage
+}
+
+@enduml

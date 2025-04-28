@@ -1,0 +1,43 @@
+@startuml SGA_Class_Diagram
+
+class User {
+  +id: int
+  +username: string
+  +password: string
+  +role: string
+  +login()
+  +logout()
+}
+
+class Student {
+  +student_id: string
+  +career: string
+  +view_schedule()
+}
+
+class Teacher {
+  +teacher_id: string
+  +department: string
+  +upload_material()
+}
+
+class Course {
+  +code: string
+  +name: string
+  +credits: int
+  +assign_teacher()
+}
+
+class Schedule {
+  +course_id: int
+  +classroom: string
+  +time: datetime
+  +generate_calendar()
+}
+
+User <|-- Student
+User <|-- Teacher
+Course "1" *-- "0..*" Schedule
+Student "1" -- "0..*" Course
+
+@enduml

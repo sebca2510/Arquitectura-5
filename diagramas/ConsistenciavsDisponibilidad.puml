@@ -1,0 +1,15 @@
+@startuml CAP_Tradeoff
+caption Figura 1. Análisis CAP para el SGA
+
+database "PostgreSQL Master" as Master
+database "PostgreSQL Replica" as Replica
+
+Master -[hidden]-> Replica
+
+note over Master, Replica
+  **Compromiso elegido**: Consistencia sobre Disponibilidad
+  Razón: Los datos académicos deben ser consistentes
+  aunque pueda afectar temporalmente la disponibilidad
+end note
+
+@enduml

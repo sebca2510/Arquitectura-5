@@ -1,0 +1,26 @@
+@startuml SGA_Component_Diagram
+
+package "Frontend" {
+  [Web App] as Web
+  [Mobile App] as Mobile
+}
+
+package "Backend" {
+  [Auth Service] as Auth
+  [Academic Service] as Academic
+  [Notification Service] as Notify
+}
+
+package "Data" {
+  [PostgreSQL] as DB
+  [Redis Cache] as Cache
+}
+
+Web --> Auth : HTTP/HTTPS
+Mobile --> Auth
+Auth --> DB : SQL
+Academic --> DB
+Academic --> Cache : Key-Value
+Notify --> Academic : API
+
+@enduml
